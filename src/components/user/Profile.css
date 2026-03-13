@@ -1,0 +1,107 @@
+/* Page background */
+body{
+  background:#0d1117;
+  color:#c9d1d9;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* main layout spacing */
+.row{
+  width:95%;
+  margin:auto;
+  margin-top:20px;
+}
+
+/* ---------- LEFT PROFILE SECTION ---------- */
+
+.profile-container{
+  background:#161b22;
+  border:1px solid #30363d;
+  border-radius:8px;
+  padding:20px;
+  text-align:center;
+  margin-top:10px;
+}
+
+.profile-container img{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+}
+
+.profile-container h2{
+  margin-top:10px;
+  font-size:20px;
+  color:white;
+}
+
+.profile-container p{
+  font-size:14px;
+  color:#8b949e;
+}
+
+.profile-container button{
+  margin-top:10px;
+  padding:6px 18px;
+  background:#238636;
+  border:none;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.profile-container button:hover{
+  background:#2ea043;
+}
+
+/* ---------- TABS ---------- */
+
+.profile-tabs{
+  display:flex;
+  gap:20px;
+  padding-bottom:8px;
+  border-bottom:1px solid #30363d;
+}
+
+.tab{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  cursor:pointer;
+  color:#c9d1d9;
+}
+
+.tab img{
+  width:18px;
+}
+
+.tab:hover{
+  border-bottom:2px solid #f78166;
+}
+
+/* ---------- HEATMAP SECTION ---------- */
+
+.heatmap-title{
+  font-size:100px;
+  font-weight:600;
+  /* color:#3280ce; */
+}
+
+.heatmap-section{
+  background:#6b87ad;
+  border:1px solid #30363d;
+  border-radius:8px;
+  padding:20px;
+  margin-top:10px;
+  /* color: antiquewhite; */
+}
+
+/* ---------- RIGHT SIDEBAR ---------- */
+
+.col-md-3:last-child{
+  background:#161b22;
+  border:1px solid #30363d;
+  border-radius:8px;
+  padding:20px;
+  height:fit-content;
+}

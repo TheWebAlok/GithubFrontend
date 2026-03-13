@@ -1,0 +1,35 @@
+/* Heatmap section box */
+.heatmap-container {
+  background: hsl(214, 17%, 40%);
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  
+}
+
+/* Title styling */
+.heatmap-title {
+  color: #194877;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+/* Heatmap chart */
+.heatmap-chart {
+  width: 100%;
+  overflow-x: auto;
+}
+.heatmap-container svg text {
+  fill: #f7f7f7; 
+  color: rgb(255, 255, 255);
+  /* day label color */
+  font-size: 12px;
+}
+
+/* Optional hover effect */
+.heatmap-container:hover {
+  border-color: #58a6ff;
+  transition: 0.3s;
+}

@@ -1,0 +1,176 @@
+.navbar{
+    display:flex;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    /* z-index:1000; */
+    justify-content:space-between;
+    align-items:center;
+    background:#0d1117;
+    padding:10px 20px;
+    border-bottom:1px solid #30363d;
+}
+body{
+padding-top:70px;
+}
+.navB{
+    width: 100%;
+    
+}
+/* LEFT */
+
+.nav-left{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    text-decoration:none;
+}
+
+.logo-area img{
+    width:35px;
+}
+
+.logo-area h3{
+    color:white;
+    margin-left:10px;
+}
+
+.search{
+    background:#161b22;
+    border:1px solid #30363d;
+    color:white;
+    padding:6px 10px;
+    border-radius:6px;
+    width:250px;
+}
+
+
+/* RIGHT */
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
+/* PROFILE */
+
+.profile{
+    width:35px;
+    border-radius:50%;
+}
+
+/* DROPDOWN */
+
+.dropdown{
+    position:relative;
+}
+
+.drop-btn{
+    background:#3c3b3b;
+    border:none;
+    cursor:pointer;
+    border: 1px solid rgb(160, 160, 160);
+    padding: 5px;
+    width: 60px;
+    height: fit-content;
+    border-radius: 10px;
+}
+
+.drop-btn img{
+    width:35px;
+    height: "30px";
+    
+}
+.drop-btn:hover{
+      background: #a19f9f;
+          border:1px solid #3c3b3b;
+          
+}
+
+.dropdown-content{
+    display:none;
+    position:absolute;
+    right:0;
+    top:45px;
+    background:#161b22;
+    border:1px solid #30363d;
+    border-radius:8px;
+    width:200px;
+    z-index: 1000;
+}
+
+.dropdown-content a{
+    display:block;
+    padding:10px;
+    color:white;
+    text-decoration:none;
+}
+
+.dropdown-content a:hover{
+    background:#21262d;
+    
+}
+
+.dropdown:hover .dropdown-content{
+    display:block;
+}
+
+
+
+
+.profile-dropdown{
+position:relative;
+cursor:pointer;
+}
+
+.profile{
+width:35px;
+border-radius:50%;
+}
+
+.profile-menu{
+position:absolute;
+right:0;
+top:45px;
+width:220px;
+background:#0d1117;
+border:1px solid #30363d;
+border-radius:8px;
+padding:8px 0;
+box-shadow:0 8px 24px rgba(0,0,0,0.5);
+z-index:100;
+}
+
+.profile-header{
+padding:10px;
+border-bottom:1px solid #30363d;
+}
+
+.profile-header p{
+font-size:12px;
+color:#8b949e;
+}
+
+.profile-menu a{
+display:block;
+padding:8px 12px;
+color:white;
+text-decoration:none;
+}
+
+.profile-menu a:hover{
+background:#21262d;
+}
+
+.profile-menu hr{
+border:0;
+border-top:1px solid #30363d;
+margin:6px 0;
+}

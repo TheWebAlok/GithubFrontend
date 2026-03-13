@@ -1,0 +1,41 @@
+.edit-repo-container{
+    max-width:700px;
+    margin:50px auto;
+    padding:30px;
+    background:#161b22;
+    border-radius:10px;
+    color:white;
+}
+
+.edit-repo-container h2{
+    margin-bottom:20px;
+}
+
+.edit-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.edit-form textarea{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #30363d;
+    background:#0d1117;
+    color:white;
+    min-height:100px;
+}
+
+.edit-form button{
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    background:#238636;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.edit-form button:hover{
+    background:#2ea043;
+}

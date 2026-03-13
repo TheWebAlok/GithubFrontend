@@ -1,0 +1,142 @@
+body{
+background:#0d1117;
+color:#c9d1d9;
+font-family: Arial;
+}
+
+.repo-wrapper{
+max-width:800px;
+margin:40px auto;
+padding:30px;
+}
+
+.repo-wrapper h1{
+font-size:26px;
+margin-bottom:5px;
+color:white;
+}
+
+.subtitle{
+color:#8b949e;
+margin-bottom:25px;
+}
+
+/* FORM */
+
+.repo-form{
+background:#0d1117;
+border:1px solid #30363d;
+padding:25px;
+border-radius:8px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+/* labels */
+
+.repo-form label{
+font-weight:600;
+font-size:14px;
+}
+
+/* repo name section */
+
+.repo-name-box{
+display:flex;
+align-items:center;
+border:1px solid #30363d;
+border-radius:6px;
+overflow:hidden;
+}
+
+.repo-name-box .owner{
+background:#161b22;
+padding:10px 14px;
+border-right:1px solid #30363d;
+color:#8b949e;
+}
+
+.repo-name-box input{
+flex:1;
+background:#0d1117;
+border:none;
+padding:10px;
+color:white;
+}
+
+.repo-name-box input:focus{
+outline:none;
+}
+
+/* textarea */
+
+textarea{
+background:#0d1117;
+border:1px solid #30363d;
+border-radius:6px;
+padding:10px;
+color:white;
+resize:vertical;
+}
+
+/* visibility */
+
+.visibility-box{
+display:flex;
+gap:30px;
+}
+
+/* file */
+
+input[type="file"]{
+background:#161b22;
+border:1px solid #30363d;
+padding:10px;
+border-radius:6px;
+}
+
+/* button */
+
+.create-btn{
+margin-top:10px;
+background:#238636;
+border:none;
+padding:10px;
+color:white;
+font-weight:600;
+border-radius:6px;
+cursor:pointer;
+}
+
+.create-btn:hover{
+background:#2ea043;
+}
+
+
+.quick-setup{
+margin-top:30px;
+border:1px solid #30363d;
+border-radius:8px;
+background:#0d1117;
+}
+
+.quick-setup h3{
+padding:12px 16px;
+border-bottom:1px solid #30363d;
+font-size:16px;
+color:#c9d1d9;
+}
+
+.code-box{
+padding:20px;
+background:#010409;
+}
+
+.code-box pre{
+color:#c9d1d9;
+font-family: monospace;
+font-size:14px;
+line-height:1.7;
+white-space:pre-wrap;
+}

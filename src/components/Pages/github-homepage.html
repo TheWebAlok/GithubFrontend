@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub: The future of building happens together</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Mona+Sans:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg-dark: #010409;
+    --bg-navy: #0d1117;
+    --blue-glow: #1f6feb;
+    --blue-mid: #388bfd;
+    --green: #3fb950;
+    --green-btn: #238636;
+    --green-btn-hover: #2ea043;
+    --border: rgba(48,54,61,1);
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(1,4,9,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    height: 62px;
+    display: flex; align-items: center; padding: 0 24px;
+    gap: 16px;
+  }
+  .nav-logo { display:flex; align-items:center; color:var(--white); flex-shrink:0; }
+  .nav-logo svg { width:32px; height:32px; fill:var(--white); }
+  .nav-links { display:flex; gap:4px; margin-left:8px; }
+  .nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: color .15s, background .15s;
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color:var(--white); background:rgba(255,255,255,.06); }
+  .nav-links .has-arrow::after { content: ' ▾'; font-size: 10px; }
+  .nav-spacer { flex:1; }
+  .nav-search {
+    display:flex; align-items:center; gap:6px;
+    background: var(--bg-navy);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 12px;
+    color: var(--text-muted);
+    font-size: 14px;
+    cursor:text;
+    min-width:240px;
+    transition: border-color .15s;
+  }
+  .nav-search:hover { border-color: var(--blue-glow); }
+  .nav-search svg { flex-shrink:0; }
+  .nav-search span { flex:1; }
+  .nav-search kbd {
+    background: rgba(255,255,255,.08);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 12px;
+    font-family: inherit;
+  }
+  .nav-actions { display:flex; gap:8px; align-items:center; margin-left:8px; }
+  .btn-link {
+    background:none; border:none; cursor:pointer;
+    color: var(--text-primary);
+    font-size: 14px; font-weight:500;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: color .15s, background .15s;
+    font-family:inherit;
+    text-decoration:none;
+  }
+  .btn-link:hover { background:rgba(255,255,255,.06); }
+  .btn-signup {
+    background: var(--white);
+    color: var(--bg-dark);
+    border: none; cursor:pointer;
+    font-size: 14px; font-weight:600;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-family:inherit;
+    transition: background .15s;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .btn-signup:hover { background:#d0d7de; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding: 120px 24px 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0; z-index:0;
+    background: radial-gradient(ellipse 80% 60% at 50% 30%, #0c2d5e 0%, #06101f 55%, #010409 100%);
+  }
+  .hero-bg::after {
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse 50% 40% at 50% 60%, rgba(31,111,235,.12) 0%, transparent 70%);
+  }
+  /* Animated stars */
+  .stars {
+    position:absolute; inset:0; z-index:1;
+    background-image:
+      radial-gradient(1px 1px at 20% 15%, rgba(255,255,255,.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 80% 25%, rgba(255,255,255,.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 55%, rgba(255,255,255,.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 70%, rgba(255,255,255,.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 40%, rgba(255,255,255,.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 5%, rgba(255,255,255,.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 35% 90%, rgba(255,255,255,.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 55% 35%, rgba(255,255,255,.7) 0%, transparent 100%);
+  }
+  .hero-content { position:relative; z-index:2; max-width:720px; }
+  .hero h1 {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+  .hero-sub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--text-secondary);
+    max-width: 520px;
+    margin: 0 auto 40px;
+    line-height: 1.6;
+  }
+  .hero-cta {
+    display:flex; align-items:center; gap:8px;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .hero-email-wrap {
+    display:flex; align-items:stretch;
+    background:rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow:hidden;
+  }
+  .hero-email-wrap input {
+    background:transparent; border:none; outline:none;
+    color: var(--text-primary);
+    font-size:14px; padding:10px 16px;
+    width:220px;
+    font-family:inherit;
+  }
+  .hero-email-wrap input::placeholder { color:var(--text-muted); }
+  .btn-green {
+    background: var(--green-btn);
+    color: var(--white);
+    border:none; cursor:pointer;
+    font-size:14px; font-weight:600;
+    padding: 10px 20px;
+    font-family:inherit;
+    white-space:nowrap;
+    transition: background .15s;
+  }
+  .btn-green:hover { background: var(--green-btn-hover); }
+  .btn-outline {
+    background:transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(240,246,252,.25);
+    cursor:pointer;
+    font-size:14px; font-weight:600;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-family:inherit;
+    white-space:nowrap;
+    transition: border-color .15s, background .15s;
+    text-decoration:none;
+    display:inline-block;
+  }
+  .btn-outline:hover { background:rgba(255,255,255,.06); border-color:rgba(240,246,252,.5); }
+
+  /* Floating Mona illustration */
+  .hero-illustration {
+    position:relative; z-index:2;
+    margin-top: 60px;
+    width:100%;
+    max-width:900px;
+  }
+  .editor-preview {
+    background: #161b22;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow:hidden;
+    box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(31,111,235,.15);
+  }
+  .editor-tabs {
+    background: #0d1117;
+    border-bottom: 1px solid var(--border);
+    display:flex; gap:0; padding: 8px 12px 0; overflow:hidden;
+  }
+  .editor-tab {
+    background: #161b22;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 6px 6px 0 0;
+    padding: 6px 16px;
+    font-size:12px; color:var(--text-secondary);
+    cursor:pointer; margin-right:4px;
+  }
+  .editor-tab.active { color:var(--text-primary); background:#1c2128; }
+  .editor-body { display:flex; }
+  .editor-sidebar {
+    width:160px; flex-shrink:0;
+    background:#161b22;
+    border-right: 1px solid var(--border);
+    padding: 12px 0;
+  }
+  .sidebar-item {
+    padding: 5px 16px;
+    font-size:12px;
+    color:var(--text-muted);
+    cursor:pointer;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .sidebar-item:hover, .sidebar-item.active { background:rgba(31,111,235,.15); color:var(--text-primary); }
+  .editor-code {
+    flex:1;
+    padding: 16px;
+    font-family: 'SFMono-Regular', Consolas, monospace;
+    font-size:12px;
+    line-height:1.8;
+    overflow:hidden;
+    min-height: 200px;
+    max-height:300px;
+    overflow-y:auto;
+  }
+  .editor-code::-webkit-scrollbar { width:6px; }
+  .editor-code::-webkit-scrollbar-track { background:transparent; }
+  .editor-code::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
+  .ln { color:var(--text-muted); margin-right:20px; user-select:none; }
+  .kw { color:#ff7b72; }
+  .fn { color:#d2a8ff; }
+  .str { color:#a5d6ff; }
+  .cm { color:#8b949e; font-style:italic; }
+  .num { color:#79c0ff; }
+  .copilot-panel {
+    width:280px; flex-shrink:0;
+    background:#161b22;
+    border-left: 1px solid var(--border);
+    padding:16px;
+    font-size:12px;
+  }
+  .copilot-label {
+    color:var(--text-muted); font-size:11px; letter-spacing:.08em;
+    text-transform:uppercase; margin-bottom:8px;
+  }
+  .copilot-explanation {
+    color:var(--text-secondary); line-height:1.6;
+    font-size:12px;
+  }
+  .copilot-explanation strong { color:var(--text-primary); background:rgba(56,139,253,.15); padding:1px 4px; border-radius:3px; }
+  .copilot-input {
+    margin-top:16px;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding: 8px 12px;
+    color:var(--text-muted);
+    font-size:12px;
+    font-family:inherit;
+    width:100%;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 80px 24px; max-width:1200px; margin:0 auto; }
+  .section-full { max-width:100%; padding:80px 0; }
+
+  /* ── BANNER ── */
+  .banner-section {
+    background: linear-gradient(135deg, #0c2d5e 0%, #0d1117 50%, #1a0a2e 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 80px 24px;
+    text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .banner-section::before {
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(31,111,235,.08) 0%, transparent 70%);
+  }
+  .banner-content { position:relative; z-index:1; max-width:800px; margin:0 auto; }
+  .feature-tag {
+    display:inline-block;
+    background:rgba(56,139,253,.15);
+    border:1px solid rgba(56,139,253,.4);
+    color:var(--blue-mid);
+    font-size:12px; font-weight:600;
+    padding:4px 12px;
+    border-radius:20px;
+    margin-bottom:24px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+  }
+  .banner-content h2 {
+    font-size: clamp(28px,4vw,48px);
+    font-weight:800;
+    line-height:1.2;
+    margin-bottom:20px;
+    letter-spacing:-1px;
+  }
+  .banner-content p { color:var(--text-secondary); font-size:18px; line-height:1.6; }
+
+  /* ── COPILOT SECTION ── */
+  .copilot-section {
+    display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+    padding:80px 60px;
+    max-width:1200px; margin:0 auto;
+  }
+  @media(max-width:768px) {
+    .copilot-section { grid-template-columns:1fr; padding:60px 24px; gap:40px; }
+    .nav-links { display:none; }
+  }
+  .copilot-text h2 {
+    font-size:clamp(24px,3.5vw,40px);
+    font-weight:800; margin-bottom:16px;
+    letter-spacing:-.5px;
+  }
+  .copilot-text h2 strong { color:var(--blue-mid); }
+  .copilot-text p { color:var(--text-secondary); font-size:16px; line-height:1.7; margin-bottom:20px; }
+  .copilot-link {
+    color:var(--blue-mid); text-decoration:none; font-size:15px; font-weight:600;
+    display:inline-flex; align-items:center; gap:6px;
+  }
+  .copilot-link:hover { text-decoration:underline; }
+  .copilot-link::after { content:'›'; font-size:20px; }
+
+  /* ── PRODUCTIVITY SECTION ── */
+  .productivity {
+    padding: 80px 60px;
+    max-width:1200px; margin:0 auto;
+  }
+  .productivity > p {
+    font-size:clamp(24px,3vw,36px);
+    font-weight:700; max-width:600px;
+    line-height:1.3; margin-bottom:60px;
+    color:var(--text-primary);
+  }
+  .productivity > p strong { color:var(--blue-mid); font-weight:800; }
+  .prod-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media(max-width:768px) { .prod-grid { grid-template-columns:1fr; } .productivity { padding:60px 24px; } }
+  .prod-card {
+    background:#161b22;
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:32px;
+    transition: border-color .2s, transform .2s;
+    cursor:pointer;
+  }
+  .prod-card:hover { border-color:#388bfd; transform:translateY(-2px); }
+  .prod-card-tag {
+    font-size:12px; color:var(--text-muted);
+    letter-spacing:.08em; text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .prod-card h3 { font-size:20px; font-weight:700; margin-bottom:12px; }
+  .prod-card p { color:var(--text-secondary); font-size:14px; line-height:1.6; }
+
+  /* ── SECURITY SECTION ── */
+  .security-section {
+    background: linear-gradient(to bottom, #010409, #0d1117, #010409);
+    padding: 120px 24px;
+    text-align:center;
+    position:relative;
+  }
+  .security-section::before {
+    content:'';
+    position:absolute; top:0; left:50%; transform:translateX(-50%);
+    width:1px; height:80px;
+    background: linear-gradient(to bottom, transparent, var(--blue-glow));
+  }
+  .shield-icon {
+    width:56px; height:56px;
+    background:linear-gradient(135deg, #388bfd, #1f6feb);
+    border-radius:12px;
+    display:inline-flex; align-items:center; justify-content:center;
+    margin-bottom:24px;
+    box-shadow: 0 0 40px rgba(31,111,235,.4);
+  }
+  .shield-icon svg { fill:white; width:28px; height:28px; }
+  .security-section h2 {
+    font-size:clamp(28px,4vw,48px);
+    font-weight:800; max-width:600px; margin:0 auto 16px;
+    letter-spacing:-1px; line-height:1.2;
+  }
+  .security-section p { color:var(--text-secondary); font-size:18px; max-width:500px; margin:0 auto; }
+
+  /* ── SOCIAL PROOF ── */
+  .social-section {
+    padding:80px 60px;
+    max-width:1200px; margin:0 auto;
+  }
+  .social-section > p {
+    font-size:clamp(24px,3vw,36px);
+    font-weight:700; max-width:620px; line-height:1.3;
+    margin-bottom:60px;
+  }
+  .social-section > p strong { color:var(--text-primary); }
+  .social-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media(max-width:768px) { .social-grid { grid-template-columns:1fr; } .social-section { padding:60px 24px; } }
+  .social-card {
+    background:#161b22;
+    border:1px solid var(--border);
+    border-radius:12px; padding:32px;
+  }
+  .company-logo { font-size:22px; font-weight:800; margin-bottom:16px; color:var(--text-primary); }
+  .social-stat { font-size:40px; font-weight:800; color:var(--white); margin-bottom:8px; }
+  .social-desc { color:var(--text-secondary); font-size:15px; line-height:1.6; }
+  .testimonial {
+    background:#161b22;
+    border:1px solid var(--border);
+    border-radius:12px; padding:32px;
+    grid-column: span 2;
+  }
+  @media(max-width:768px) { .testimonial { grid-column:span 1; } }
+  .quote-mark { font-size:48px; color:var(--blue-glow); line-height:1; margin-bottom:8px; }
+  .testimonial blockquote {
+    font-size:18px; line-height:1.7; color:var(--text-primary);
+    font-style:italic; margin-bottom:24px;
+  }
+  .testimonial cite { color:var(--text-muted); font-size:14px; font-style:normal; }
+
+  /* ── PROJECT BOARD ── */
+  .project-section {
+    display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+    padding:80px 60px;
+    max-width:1200px; margin:0 auto;
+  }
+  @media(max-width:768px) { .project-section { grid-template-columns:1fr; padding:60px 24px; gap:40px; } }
+  .project-text h2 { font-size:clamp(24px,3.5vw,40px); font-weight:800; margin-bottom:16px; }
+  .project-text h2 strong { color:var(--green); }
+  .project-text p { color:var(--text-secondary); font-size:16px; line-height:1.7; margin-bottom:20px; }
+  .project-board {
+    background:#161b22;
+    border:1px solid var(--border);
+    border-radius:10px; overflow:hidden;
+  }
+  .board-header {
+    background:#0d1117;
+    border-bottom:1px solid var(--border);
+    padding:10px 16px;
+    display:flex; align-items:center; gap:8px;
+    font-size:13px; color:var(--text-secondary);
+  }
+  .board-row {
+    display:grid;
+    grid-template-columns:3fr 1fr 1fr 1.2fr 1fr;
+    padding:8px 16px;
+    border-bottom:1px solid rgba(48,54,61,.5);
+    font-size:12px;
+    align-items:center;
+    gap:8px;
+  }
+  .board-row:last-child { border-bottom:none; }
+  .board-row:hover { background:rgba(255,255,255,.02); }
+  .issue-title { color:var(--text-primary); }
+  .badge {
+    display:inline-block; padding:2px 8px;
+    border-radius:20px; font-size:11px; font-weight:600;
+  }
+  .badge-blue { background:rgba(31,111,235,.2); color:#79c0ff; border:1px solid rgba(31,111,235,.4); }
+  .badge-green { background:rgba(63,185,80,.2); color:#56d364; border:1px solid rgba(63,185,80,.4); }
+  .badge-orange { background:rgba(210,153,34,.2); color:#e3b341; border:1px solid rgba(210,153,34,.4); }
+  .badge-purple { background:rgba(163,113,247,.2); color:#bc8cff; border:1px solid rgba(163,113,247,.4); }
+  .progress-bar { width:80px; height:4px; background:#21262d; border-radius:2px; overflow:hidden; }
+  .progress-fill { height:100%; border-radius:2px; background:var(--green); }
+  .avatar { width:20px; height:20px; border-radius:50%; }
+
+  /* ── FINAL CTA ── */
+  .final-cta {
+    text-align:center;
+    padding:120px 24px;
+    max-width:800px; margin:0 auto;
+  }
+  .final-cta h2 {
+    font-size:clamp(28px,4vw,48px);
+    font-weight:800; margin-bottom:20px;
+    letter-spacing:-1px; line-height:1.2;
+  }
+  .final-cta p { color:var(--text-secondary); font-size:18px; line-height:1.6; margin-bottom:40px; }
+  .final-cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+  .citation { font-size:12px; color:var(--text-muted); margin-top:40px; }
+  .citation a { color:var(--text-muted); text-decoration:underline; }
+
+  /* ── FOOTER ── */
+  footer {
+    background:#010409;
+    border-top:1px solid var(--border);
+    padding:40px 60px;
+    max-width:100%;
+  }
+  .footer-inner { max-width:1200px; margin:0 auto; }
+  .footer-grid {
+    display:grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap:32px; margin-bottom:40px;
+  }
+  @media(max-width:768px) { .footer-grid { grid-template-columns:1fr 1fr; } footer { padding:40px 24px; } }
+  .footer-logo { display:flex; align-items:center; gap:8px; margin-bottom:16px; }
+  .footer-logo svg { width:28px; height:28px; fill:var(--text-secondary); }
+  .footer-col h4 { font-size:12px; font-weight:600; color:var(--text-primary); margin-bottom:12px; letter-spacing:.04em; }
+  .footer-col ul { list-style:none; }
+  .footer-col li { margin-bottom:8px; }
+  .footer-col a { color:var(--text-secondary); text-decoration:none; font-size:13px; }
+  .footer-col a:hover { color:var(--text-primary); text-decoration:underline; }
+  .footer-bottom {
+    border-top:1px solid var(--border);
+    padding-top:24px;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:16px;
+  }
+  .footer-bottom p { font-size:12px; color:var(--text-muted); }
+  .footer-bottom-links { display:flex; gap:20px; }
+  .footer-bottom-links a { color:var(--text-muted); text-decoration:none; font-size:12px; }
+  .footer-bottom-links a:hover { color:var(--text-primary); }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(30px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+  .hero-content { animation: fadeUp .8s ease both; }
+  .hero-illustration { animation: fadeUp .8s .3s ease both; }
+
+  /* Mona blobs */
+  .blobs {
+    position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+    width:200px; height:100px; z-index:2;
+    pointer-events:none;
+  }
+  .blob {
+    position:absolute; border-radius:50%;
+    background: linear-gradient(135deg, #388bfd, #1f3c7a);
+    animation: float 4s ease-in-out infinite;
+  }
+  .blob1 { width:60px; height:60px; left:30px; bottom:10px; opacity:.8; animation-delay:0s; }
+  .blob2 { width:50px; height:50px; right:20px; bottom:20px; opacity:.7; animation-delay:.8s;
+    background: linear-gradient(135deg, #b4bec8, #8fa0b0); }
+  @keyframes float {
+    0%,100% { transform:translateY(0); }
+    50% { transform:translateY(-12px); }
+  }
+
+  /* scroll glow divider */
+  .glow-line {
+    height:1px;
+    background: linear-gradient(to right, transparent, var(--blue-glow), transparent);
+    opacity:.4;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+    </svg>
+  </a>
+  <div class="nav-links">
+    <a href="#" class="has-arrow">Platform</a>
+    <a href="#" class="has-arrow">Solutions</a>
+    <a href="#" class="has-arrow">Resources</a>
+    <a href="#" class="has-arrow">Open Source</a>
+    <a href="#" class="has-arrow">Enterprise</a>
+    <a href="#">Pricing</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <div class="nav-search">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+      <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/>
+    </svg>
+    <span>Search or jump to...</span>
+    <kbd>/</kbd>
+  </div>
+  <div class="nav-actions">
+    <a href="#" class="btn-link">Sign in</a>
+    <a href="#" class="btn-signup">Sign up</a>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="stars"></div>
+  <div class="hero-content">
+    <h1>The future of building<br>happens together</h1>
+    <p class="hero-sub">Tools and trends evolve, but collaboration endures. With GitHub, developers, agents, and code come together on one platform.</p>
+    <div class="hero-cta">
+      <div class="hero-email-wrap">
+        <input type="email" placeholder="Enter your email">
+        <button class="btn-green">Sign up for GitHub</button>
+      </div>
+      <a href="#" class="btn-outline">Try GitHub Copilot free</a>
+    </div>
+  </div>
+  <div class="hero-illustration">
+    <div class="editor-preview">
+      <div class="editor-tabs">
+        <div class="editor-tab">GITHUB COPILOT CHAT</div>
+        <div class="editor-tab active">game.ts ×</div>
+        <div class="editor-tab">characters.module.css ×</div>
+        <div class="editor-tab">bonus-level.ts ×</div>
+      </div>
+      <div class="editor-body">
+        <div class="editor-sidebar">
+          <div class="sidebar-item">📁 src</div>
+          <div class="sidebar-item active">  game.ts</div>
+          <div class="sidebar-item">  characters.module.css</div>
+          <div class="sidebar-item">  bonus-level.ts</div>
+          <div class="sidebar-item">  player.ts</div>
+          <div class="sidebar-item">📁 assets</div>
+          <div class="sidebar-item">  sprites.png</div>
+          <div class="sidebar-item">📁 utils</div>
+          <div class="sidebar-item">  collision.ts</div>
+        </div>
+        <div class="editor-code">
+          <div><span class="ln">1</span><span class="kw">import</span> { <span class="fn">Player</span> } <span class="kw">from</span> <span class="str">'./player'</span>;</div>
+          <div><span class="ln">2</span><span class="kw">import</span> { <span class="fn">CollisionDetector</span> } <span class="kw">from</span> <span class="str">'./utils/collision'</span>;</div>
+          <div><span class="ln">3</span></div>
+          <div><span class="ln">4</span><span class="kw">export class</span> <span class="fn">Game</span> {</div>
+          <div><span class="ln">5</span>  <span class="kw">private</span> player1: <span class="fn">Player</span>;</div>
+          <div><span class="ln">6</span>  <span class="kw">private</span> player2: <span class="fn">Player</span>;</div>
+          <div><span class="ln">7</span>  <span class="kw">private</span> collision: <span class="fn">CollisionDetector</span>;</div>
+          <div><span class="ln">8</span></div>
+          <div><span class="ln">9</span>  <span class="fn">constructor</span>() {</div>
+          <div><span class="ln">10</span>    <span class="kw">this</span>.player1 = <span class="kw">new</span> <span class="fn">Player</span>({ x: <span class="num">0</span>, y: <span class="num">0</span> });</div>
+          <div><span class="ln">11</span>    <span class="kw">this</span>.player2 = <span class="kw">new</span> <span class="fn">Player</span>({ x: <span class="num">800</span>, y: <span class="num">0</span> });</div>
+          <div><span class="ln">12</span>    <span class="kw">this</span>.collision = <span class="kw">new</span> <span class="fn">CollisionDetector</span>();</div>
+          <div><span class="ln">13</span>  }</div>
+          <div><span class="ln">14</span></div>
+          <div><span class="ln">15</span>  <span class="fn">update</span>(deltaTime: <span class="kw">number</span>): <span class="kw">void</span> {</div>
+          <div><span class="ln">16</span>    <span class="kw">this</span>.player1.<span class="fn">update</span>(deltaTime);</div>
+          <div><span class="ln">17</span>    <span class="kw">this</span>.player2.<span class="fn">update</span>(deltaTime);</div>
+          <div><span class="ln">18</span>    <span class="kw">this</span>.<span class="fn">checkCollisions</span>();</div>
+          <div><span class="ln">19</span>  }</div>
+          <div><span class="ln">20</span></div>
+          <div><span class="ln">21</span>  <span class="kw">private</span> <span class="fn">checkCollisions</span>(): <span class="kw">void</span> {</div>
+          <div><span class="ln">22</span>    <span class="kw">const</span> hit = <span class="kw">this</span>.collision.<span class="fn">detect</span>(</div>
+          <div><span class="ln">23</span>      <span class="kw">this</span>.player1, <span class="kw">this</span>.player2</div>
+          <div><span class="ln">24</span>    );</div>
+          <div><span class="ln">25</span>    <span class="kw">if</span> (hit) {</div>
+          <div><span class="ln">26</span>      <span class="kw">this</span>.player1.<span class="fn">onCollision</span>(hit);</div>
+          <div><span class="ln">27</span>      <span class="kw">this</span>.player2.<span class="fn">onCollision</span>(hit);</div>
+          <div><span class="ln">28</span>    }</div>
+          <div><span class="ln">29</span>  }</div>
+        </div>
+        <div class="copilot-panel">
+          <div class="copilot-label">✦ Copilot Explanation</div>
+          <div class="copilot-explanation">
+            <p>The <strong>checkCollisions</strong> function handles the logic for detecting and responding to collisions between the two player objects.</p>
+            <br>
+            <p><strong>Parameters:</strong> The function takes the <code>player1</code> and <code>player2</code> objects as parameters.</p>
+            <br>
+            <p><strong>Returns:</strong> <code>void</code>. The function updates player states and coordinates the collision response between players, passing the detected collision to both players.</p>
+          </div>
+          <input class="copilot-input" placeholder="Ask a question or type / for commands" readonly>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ── COPILOT FEATURE ── -->
+<div class="copilot-section">
+  <div class="copilot-text">
+    <div class="feature-tag">GitHub Copilot</div>
+    <h2><strong>Your AI partner</strong> everywhere.</h2>
+    <p>Copilot is ready to work with you at each step of the software development lifecycle. From first idea to shipped code, AI assistance is built right in.</p>
+    <a href="#" class="copilot-link">Explore GitHub Copilot</a>
+  </div>
+  <div>
+    <div style="background:#161b22; border:1px solid var(--border); border-radius:12px; overflow:hidden;">
+      <div style="padding:16px; border-bottom:1px solid var(--border); background:#0d1117; font-size:12px; color:var(--text-muted);">
+        ✦ GitHub Copilot
+      </div>
+      <div style="padding:16px; font-size:13px;">
+        <div style="color:var(--text-muted); margin-bottom:12px; font-size:12px; font-style:italic;">
+          +page.server.ts &nbsp; src/routes<br>
+          +page.svelte &nbsp;&nbsp;&nbsp; src/routes
+        </div>
+        <div style="background:#21262d; border-radius:6px; padding:8px 12px; margin-bottom:8px; font-size:12px; color:var(--text-secondary);">
+          Add commit message...
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; padding-top:8px; border-top:1px solid var(--border);">
+          <select style="background:#21262d; border:1px solid var(--border); color:var(--text-secondary); font-size:12px; border-radius:4px; padding:4px 8px; font-family:inherit;">
+            <option>Agent ▾</option>
+          </select>
+          <span style="color:var(--text-muted); font-size:12px;">Claude 3.5 Sonnet ▾</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:right; margin-top:12px;">
+      <div style="display:inline-flex; align-items:center; gap:6px; color:var(--text-muted); font-size:12px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;"></span>
+        Duolingo
+        <span style="color:var(--text-secondary); margin-left:8px;">boosts developer speed by 25% with GitHub Copilot</span>
+      </div>
+      <div style="margin-top:8px;">
+        <a href="#" style="color:var(--blue-mid); font-size:13px; text-decoration:none; font-weight:600;">Read customer story ›</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ── PRODUCTIVITY ── -->
+<div class="productivity">
+  <p>Accelerate your workflows with <strong>AI-native development</strong> built into every step.</p>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-card-tag">GitHub Actions</div>
+      <h3>Automate your workflow</h3>
+      <p>Build, test, and deploy your code right from GitHub. Make code reviews more efficient, manage workflows, and automatically merge when checks pass.</p>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card-tag">GitHub Codespaces</div>
+      <h3>Code with full dev environments</h3>
+      <p>Spin up fully configured dev environments from any device in seconds. Work consistently and eliminate "it works on my machine" forever.</p>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card-tag">GitHub Mobile</div>
+      <h3>Manage from anywhere</h3>
+      <p>Stay in the flow with push notifications, review code, merge pull requests, and triage issues — from any device, anywhere.</p>
+    </div>
+    <div class="prod-card">
+      <div class="prod-card-tag">GitHub CLI</div>
+      <h3>Command GitHub from the terminal</h3>
+      <p>Bring GitHub to your command line. Create issues, check out pull requests, and manage releases without ever leaving the terminal.</p>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ── SECURITY ── -->
+<div class="security-section">
+  <div style="max-width:700px; margin:0 auto; text-align:center;">
+    <div class="shield-icon">
+      <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+    </div>
+    <h2>Built-in application security<br>where found means fixed</h2>
+    <p>Use AI to find and fix vulnerabilities so your team can ship more secure software faster.</p>
+    <div style="margin-top:40px;">
+      <div style="background:#161b22; border:1px solid var(--border); border-radius:12px; padding:32px; text-align:left;">
+        <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;">
+          <span style="color:#56d364; font-size:18px;">●</span>
+          <div>
+            <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">Dependabot alerts fixed</div>
+            <div style="font-size:13px; color:var(--text-muted);">3 high severity vulnerabilities resolved • 12 minutes ago</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;">
+          <span style="color:#e3b341; font-size:18px;">●</span>
+          <div>
+            <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">Code scanning alert</div>
+            <div style="font-size:13px; color:var(--text-muted);">SQL injection risk detected in auth.ts — auto-fix available</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          <span style="color:#388bfd; font-size:18px;">●</span>
+          <div>
+            <div style="font-size:14px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">Secret scanning enabled</div>
+            <div style="font-size:13px; color:var(--text-muted);">Monitoring 0 exposed secrets across all repositories</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ── PROJECT BOARDS ── -->
+<div class="project-section">
+  <div class="project-text">
+    <div class="feature-tag">GitHub Projects</div>
+    <h2>Plan with clarity. <strong>Build with focus.</strong></h2>
+    <p>Organize everything from high-level roadmaps to everyday tasks. Connect issues, pull requests, and notes to visualize your project's progress in real time.</p>
+    <a href="#" class="copilot-link" style="color:var(--green);">Explore GitHub Projects</a>
+  </div>
+  <div class="project-board">
+    <div class="board-header">
+      🎮 Game Dev Roadmap &nbsp;·&nbsp; <span style="color:var(--blue-mid);">3 groups</span>
+    </div>
+    <div class="board-row" style="background:#0d1117; font-size:11px; color:var(--text-muted); font-weight:600; letter-spacing:.04em;">
+      <span>TITLE</span><span>TEAM</span><span>STATUS</span><span>ASSIGNEE</span><span>PROGRESS</span>
+    </div>
+    <div style="padding:6px 16px; font-size:12px; color:var(--text-muted); background:rgba(255,255,255,.02); border-bottom:1px solid var(--border);">
+      📂 Prototype · 3
+    </div>
+    <div class="board-row">
+      <span class="issue-title">Game level and go-no-go</span>
+      <span><span class="badge badge-blue">Producers</span></span>
+      <span><span class="badge badge-green">Complete</span></span>
+      <span style="color:var(--text-muted); font-size:11px;">lucid-jellybean</span>
+      <span><div class="progress-bar"><div class="progress-fill" style="width:88%"></div></div></span>
+    </div>
+    <div class="board-row">
+      <span class="issue-title">Engine prototype (physics, rendering)</span>
+      <span><span class="badge badge-purple">Engines</span></span>
+      <span><span class="badge badge-green">Complete</span></span>
+      <span style="color:var(--text-muted); font-size:11px;">aldengarcia</span>
+      <span><div class="progress-bar"><div class="progress-fill" style="width:54%"></div></div></span>
+    </div>
+    <div class="board-row">
+      <span class="issue-title">Initial concept art</span>
+      <span><span class="badge badge-orange">Art</span></span>
+      <span><span class="badge badge-green">Complete</span></span>
+      <span style="color:var(--text-muted); font-size:11px;">amerose</span>
+      <span><div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div></span>
+    </div>
+    <div style="padding:6px 16px; font-size:12px; color:var(--text-muted); background:rgba(255,255,255,.02); border-bottom:1px solid var(--border);">
+      📂 Beta · 5
+    </div>
+    <div class="board-row">
+      <span class="issue-title">Integrate with Leaderboard Service</span>
+      <span><span class="badge badge-blue">Game Loop</span></span>
+      <span><span class="badge badge-orange">Not Started</span></span>
+      <span style="color:var(--text-muted); font-size:11px;">literal-davy</span>
+      <span><div class="progress-bar"><div class="progress-fill" style="width:34%"></div></div></span>
+    </div>
+    <div class="board-row">
+      <span class="issue-title">Update collision logic</span>
+      <span><span class="badge badge-purple">Engines</span></span>
+      <span><span class="badge badge-blue">Building</span></span>
+      <span style="color:var(--text-muted); font-size:11px;">helios-acimoore</span>
+      <span><div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div></span>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ── SOCIAL PROOF ── -->
+<div class="social-section">
+  <p>Millions of developers and businesses<br><strong>call GitHub home</strong></p>
+  <div class="social-grid">
+    <div class="social-card">
+      <div class="company-logo">Gartner</div>
+      <div style="font-size:13px; color:var(--text-muted); margin-bottom:16px;">2025 Gartner® Magic Quadrant™ for AI Code Assistants</div>
+      <div class="social-stat">Leader</div>
+      <div class="social-desc">GitHub named a Leader in the 2025 Gartner® Magic Quadrant™ for AI Code Assistants.</div>
+    </div>
+    <div class="social-card">
+      <div class="company-logo">100M+</div>
+      <div class="social-stat">Developers</div>
+      <div class="social-desc">Whether you're scaling your development process or just learning to code, GitHub is where you belong.</div>
+    </div>
+    <div class="testimonial">
+      <div class="quote-mark">"</div>
+      <blockquote>It helps us onboard new software engineers and get them productive right away. We have all our source code in GitHub, so it helps to always have that context — it's like a superpower.</blockquote>
+      <cite>— Engineering Lead, Fortune 500 Company</cite>
+    </div>
+  </div>
+</div>
+
+<div class="glow-line"></div>
+
+<!-- ── FINAL CTA ── -->
+<div class="final-cta">
+  <h2>Millions of developers and<br>businesses call GitHub home</h2>
+  <p>Whether you're scaling your development process or just learning to code, GitHub is where you belong. Join the world's most widely adopted developer platform to build the technologies that shape what's next.</p>
+  <div class="final-cta-btns">
+    <div class="hero-email-wrap">
+      <input type="email" placeholder="Enter your email">
+      <button class="btn-green">Sign up for GitHub</button>
+    </div>
+    <a href="#" class="btn-outline">Try GitHub Copilot free</a>
+  </div>
+  <p class="citation">1. GitHub internal customer data, 2025. <a href="#">↗</a></p>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <svg viewBox="0 0 16 16">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          <strong>GitHub</strong>
+        </div>
+        <p style="font-size:12px; color:var(--text-muted); line-height:1.6;">The complete developer platform to build, scale, and deliver secure software.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <ul>
+          <li><a href="#">Developer API</a></li>
+          <li><a href="#">Partners</a></li>
+          <li><a href="#">Electron</a></li>
+          <li><a href="#">GitHub Desktop</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Docs</a></li>
+          <li><a href="#">Community Forum</a></li>
+          <li><a href="#">Professional Services</a></li>
+          <li><a href="#">Premium Support</a></li>
+          <li><a href="#">Skills</a></li>
+          <li><a href="#">Status</a></li>
+          <li><a href="#">Contact GitHub</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Inclusion</a></li>
+          <li><a href="#">Social Impact</a></li>
+          <li><a href="#">Shop</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ecosystem</h4>
+        <ul>
+          <li><a href="#">GitHub Marketplace</a></li>
+          <li><a href="#">GitHub Actions</a></li>
+          <li><a href="#">GitHub Copilot</a></li>
+          <li><a href="#">GitHub Codespaces</a></li>
+          <li><a href="#">GitHub Mobile</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 GitHub, Inc.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+        <a href="#">Sitemap</a>
+        <a href="#">What is Git?</a>
+        <a href="#">Manage cookies</a>
+        <a href="#">Do not share my personal information</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -33,7 +33,7 @@ const CreateRepo = () => {
         formData.append("files", files[i]);
       }
 
-      await axios.post("http://localhost:5000/repo/create", formData);
+      await axios.post("http://13.234.30.254:5000/repo/create", formData);
 
       toast.success("Repository created successfully");
 

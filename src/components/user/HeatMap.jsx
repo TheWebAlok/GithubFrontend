@@ -15,7 +15,7 @@ const HeatMapProfile = () => {
       try {
 
         const response = await fetch(
-          `http://localhost:5000/activity/${userId}`
+          `http://13.234.30.254:5000/activity/${userId}`
         );
 
         const data = await response.json();

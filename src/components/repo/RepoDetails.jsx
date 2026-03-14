@@ -10,14 +10,14 @@ const RepoDetails = () => {
   const [repo, setRepo] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/repo/${id}`)
+    fetch(`http://13.234.30.254:5000/repo/${id}`)
       .then(res => res.json())
       .then(data => setRepo(data));
   }, [id]);
 
   const deleteRepo = async () => {
     try {
-      await fetch(`http://localhost:5000/repo/delete/${id}`, {
+      await fetch(`http://13.234.30.254:5000/repo/delete/${id}`, {
         method: "DELETE"
       });
 

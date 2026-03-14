@@ -17,7 +17,7 @@ const Dashboard = () => {
 
     const fetchedRepositories = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/repo/user/${userId}`);
+        const response = await fetch(`http://13.234.30.254:5000/repo/user/${userId}`);
         const data = await response.json();
 
         if (!response.ok) {
@@ -35,7 +35,7 @@ const Dashboard = () => {
 
     const fetchedSuggestRepositories = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/repo/all`);
+        const response = await fetch(`http://13.234.30.254:5000/repo/all`);
         const data = await response.json();
         setSuggestedRepositories(data);
 

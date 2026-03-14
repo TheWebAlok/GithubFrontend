@@ -26,7 +26,7 @@ const Settings = () => {
       try{
 
         const res = await axios.get(
-          `http://localhost:5000/user/${userId}`
+          `http://13.234.30.254:5000/user/${userId}`
         );
 
         setUser(res.data);
@@ -64,7 +64,7 @@ const Settings = () => {
     try{
 
       await axios.put(
-        `http://localhost:5000/user/update/${userId}`,
+        `http://13.234.30.254:5000/user/update/${userId}`,
         user
       );
 

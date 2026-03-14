@@ -24,7 +24,7 @@ const Issue = ({ repoId }) => {
   /* ================= CREATE ISSUE ================= */
   const createIssue = async () => {
     try {
-      await axios.post(`http://localhost:5000/api/issues/${repoId}`, {
+      await axios.post(`http://13.234.30.254:5000/api/issues/${repoId}`, {
         title,
         description,
       });

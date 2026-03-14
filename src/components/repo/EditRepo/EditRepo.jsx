@@ -17,7 +17,7 @@ const EditRepo = () => {
 
       useEffect(() => {
 
-            fetch(`http://localhost:5000/repo/${id}`)
+            fetch(`http://13.234.30.254:5000/repo/${id}`)
                   .then(res => res.json())
                   .then(data => {
 
@@ -47,7 +47,7 @@ const EditRepo = () => {
 
             try {
 
-                  const res = await fetch(`http://localhost:5000/repo/update/${id}`, {
+                  const res = await fetch(`http://13.234.30.254:5000/repo/update/${id}`, {
                         method: "PUT",
                         body: formData
                   });

@@ -71,7 +71,7 @@ const Dashboard = () => {
       <section id="dashboard" className="container-fluid">
 
         {/* Suggested repos */}
-        <aside className="suggested1"> 
+        <aside className="suggested1 col-md-2"> 
                    <h3>Suggested Repositories</h3>
 
                 
@@ -86,7 +86,7 @@ const Dashboard = () => {
         </aside>
 
         {/* Your repos */}
-        <main>
+        <main className="col-md-7">
 
           <h3>Your Repositories</h3>
 
@@ -117,7 +117,7 @@ const Dashboard = () => {
         </main>
 
         {/* Events */}
-        <aside className="suggested1">
+        <aside className="suggested1 col-md-3">
 
           <h3>Upcoming Events</h3>
 

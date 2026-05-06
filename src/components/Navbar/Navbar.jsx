@@ -58,7 +58,7 @@ const Navbar = () => {
             ☰
           </button>
 
-          <Link to="/" className="logo-area">
+          <Link to="/dashboard" className="logo-area">
             <img src={logo} alt="logo" />
             <h3>GitHub</h3>
           </Link>

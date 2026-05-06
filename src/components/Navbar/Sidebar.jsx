@@ -14,7 +14,7 @@ const Sidebar = ({open,setOpen}) => {
 
       <ul>
 
-  <li><Link to="/">🏠 Home</Link></li>
+  <li><Link to="/dashboard">🏠 Home</Link></li>
   <li><Link to="/issues">⚪ Issues</Link></li>
   <li><Link to="/pull">🔀 Pull requests</Link></li>
   <li><Link to="/repo">📁 Repositories</Link></li>

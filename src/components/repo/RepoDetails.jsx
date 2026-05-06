@@ -435,7 +435,7 @@ const RepoDetails = () => {
               <div className="rd-hero">
                 <div className="rd-hero-top">
                   <div className="rd-title-group">
-                    <div className="rd-repo-icon">📦</div>
+                    {/* <div className="rd-repo-icon">📦</div> */}
                     <div className="rd-title-text">
                       <h1>
                         <span className="owner">{repo.owner?.username}</span>
@@ -449,11 +449,9 @@ const RepoDetails = () => {
                   </div>
 
                   <div className="rd-actions">
-                    <button className="rd-btn rd-btn-edit" onClick={() => navigate(`/repo/edit/${repo._id}`)}>
-                      ✏️ Edit
+                    <button className="rd-btn rd-btn-edit" onClick={() => navigate(`/repo/edit/${repo._id}`)}>Edit
                     </button>
-                    <button className="rd-btn rd-btn-delete" onClick={() => setShowDeleteModal(true)}>
-                      🗑 Delete
+                    <button className="rd-btn rd-btn-delete" onClick={() => setShowDeleteModal(true)}>Delete
                     </button>
                   </div>
                 </div>
@@ -464,7 +462,7 @@ const RepoDetails = () => {
 
                 <div className="rd-stats-row">
                   <div className="rd-stat">
-                    <span className="rd-stat-icon">📅</span>
+                    {/* <span className="rd-stat-icon"></span> */}
                     Created <strong>{formatDate(repo.createdAt)}</strong>
                   </div>
                   <div className="rd-stat">

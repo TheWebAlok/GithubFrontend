@@ -427,7 +427,7 @@ const EditRepo = () => {
         <div className="er-container">
           {/* Heading */}
           <div className="er-heading">
-            <div className="er-heading-icon">✏️</div>
+            {/* <div className="er-heading-icon"><i class="bi bi-pen"></i></div> */}
             <div>
               <h1>Edit Repository</h1>
               <p>Update your repository details and files</p>
@@ -437,7 +437,7 @@ const EditRepo = () => {
           {/* Form card */}
           <div className={`er-card ${loading ? "er-skeleton" : ""}`}>
             <div className="er-card-header">
-              <span style={{ fontSize: 12 }}>⚙️</span>
+              {/* <span style={{ fontSize: 12 }}><i class="bi bi-gear"></i></span> */}
               <span>Repository Settings</span>
             </div>
 
@@ -574,7 +574,7 @@ const EditRepo = () => {
                 {saving ? (
                   <><span className="er-spinner" /> Saving…</>
                 ) : (
-                  <>💾 Save Changes</>
+                  <>Save Changes</>
                 )}
               </button>
             </div>

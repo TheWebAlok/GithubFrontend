@@ -66,9 +66,15 @@ const Navbar = () => {
 
 
         </div>
-
+ 
         {/* RIGHT SIDE */}
         <div className="nav-right">
+        <div>
+        <Link to="/copilot" className="logo-area">
+            {/* <img src={logo} alt="logo" /> */}
+            <h3>Copilot</h3>
+          </Link>
+        </div>
           <div>
             <img style={{
               height: "30px", position: "absolute", right: "11%", color: "red", marginTop: "5px"
@@ -79,6 +85,7 @@ const Navbar = () => {
               className="search"
             />
           </div>
+          
 
           <div className="dropdown">
             <button className="drop-btn">

@@ -12,6 +12,7 @@ import RepoDetails from "./components/repo/RepoDetails";
 import EditRepo from "./components/repo/EditRepo/EditRepo";
 import Settings from "./components/Settings/setting";
 import Home from "./components/Pages/Home/Home";
+import Copilot from "./components/Pages/Copilot/Copilot";
 
 const ProjectRoutes = () => {
 
@@ -43,6 +44,7 @@ const ProjectRoutes = () => {
             { path: "/dashboard", element: <Dashboard /> },
             { path: "/auth", element: <Login /> },
             { path: "/signup", element: <Signup /> },
+            { path: "/copilot", element: <Copilot /> },
             { path: "/profile", element: <Profile /> },
             { path: "/create/repo", element: <CreateRepo /> },
             { path: "/repo/:id", element: <RepoDetails /> },

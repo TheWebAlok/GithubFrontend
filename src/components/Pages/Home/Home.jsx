@@ -448,11 +448,13 @@ export default function Home() {
                 <div className="hero-email-wrap">
                   <input type="email" placeholder="Enter your email" value={email} onChange={e => setEmail(e.target.value)} />
                   <motion.button className="btn-green" whileHover={{ background: 'var(--green-btn-hover)' }} whileTap={{ scale: 0.97 }}>
-                    Sign up for GitHub
+                    <a href="/auth">Sign up for GitHub
+</a>
+
                   </motion.button>
                 </div>
-                <motion.a href="#" className="btn-outline" whileHover={{ background: 'rgba(255,255,255,.06)', borderColor: 'rgba(240,246,252,.5)' }} whileTap={{ scale: 0.97 }}>
-                  Try GitHub Copilot free
+                <motion.a href="copilot" className="btn-outline" whileHover={{ background: 'rgba(255,255,255,.06)', borderColor: 'rgba(240,246,252,.5)' }} whileTap={{ scale: 0.97 }}>
+                  <a href="/copilot">Try GitHub Copilot free</a>
                 </motion.a>
               </div>
             </div>

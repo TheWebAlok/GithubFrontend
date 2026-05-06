@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import axiosInstance from "../../api/axios";
 
 const Issue = ({ repoId }) => {
 
@@ -8,14 +9,14 @@ const Issue = ({ repoId }) => {
   const [description, setDescription] = useState("");
 
   /* ================= GET ISSUES ================= */
-  const fetchIssues = async () => {
-    try {
-      const res = await axios.get(`http://localhost:5000/api/issues/${repoId}`);
-      setIssues(res.data);
-    } catch (error) {
-      console.error("Error fetching issues", error);
-    }
-  };
+ const fetchIssues = async () => {
+  try {
+    const res = await axios.get(`/api/issues/${repoId}`);
+    setIssues(res.data);
+  } catch (error) {
+    console.error("Error fetching issues", error);
+  }
+};
 
   useEffect(() => {
     fetchIssues();
@@ -24,10 +25,10 @@ const Issue = ({ repoId }) => {
   /* ================= CREATE ISSUE ================= */
   const createIssue = async () => {
     try {
-      await axios.post(`http://13.234.30.254:5000/api/issues/${repoId}`, {
-        title,
-        description,
-      });
+     await axiosInstance.post(`/api/issues/${repoId}`, {
+  title,
+  description,
+});;
 
       setTitle("");
       setDescription("");

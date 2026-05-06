@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useAuth } from "../../authContext";
 import { PageHeader } from "@primer/react";
 import { Button } from "@primer/react";
 import "./Auth.css";
 import logo from "../../assets/github-mark-white.svg";
 import { Link } from "react-router-dom";
+import axiosInstance from "../../api/axios";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -20,12 +20,11 @@ const Signup = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post("http://13.234.30.254:5000/signup", {
-        email: email,
-        password: password,
-        username: username,
-      });
-
+      const res = await axiosInstance.post("/signup", {
+  email,
+  password,
+  username,
+});
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("userId", res.data.userId);
 

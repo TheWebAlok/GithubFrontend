@@ -28,7 +28,7 @@ const Profile = () => {
 
       try {
         const response = await axios.get(
-          `http://13.234.30.254t:5000/userProfile/${userId}`
+          `https://github-backend-clone.onrender.com/userProfile/${userId}`
         );
 
         setUserDetails(response.data);

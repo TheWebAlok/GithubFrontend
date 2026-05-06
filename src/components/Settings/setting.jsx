@@ -26,7 +26,7 @@ const Settings = () => {
       try{
 
         const res = await axios.get(
-          `http://13.234.30.254:5000/user/${userId}`
+          `https://github-backend-clone.onrender.com/user/${userId}`
         );
 
         setUser(res.data);

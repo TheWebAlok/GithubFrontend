@@ -10,14 +10,14 @@ const RepoDetails = () => {
   const [repo, setRepo] = useState(null);
 
   useEffect(() => {
-    fetch(`http://13.234.30.254:5000/repo/${id}`)
+    fetch(`https://github-backend-clone.onrender.com/repo/${id}`)
       .then(res => res.json())
       .then(data => setRepo(data));
   }, [id]);
 
   const deleteRepo = async () => {
     try {
-      await fetch(`http://13.234.30.254:5000/repo/delete/${id}`, {
+      await fetch(`https://github-backend-clone.onrender.com/repo/delete/${id}`, {
         method: "DELETE"
       });
 

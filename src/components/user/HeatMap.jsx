@@ -15,7 +15,7 @@ const HeatMapProfile = () => {
       try {
 
         const response = await fetch(
-          `http://13.234.30.254:5000/activity/${userId}`
+          `https://github-backend-clone.onrender.com/activity/${userId}`
         );
 
         const data = await response.json();
